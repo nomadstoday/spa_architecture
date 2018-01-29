@@ -78,7 +78,7 @@ nt_spa.shell = (function ($) {
 			jqueryMap.$languageSelectors.off("click");
 			jqueryMap.$languageSelectors.css({"cursor": "default", "color": "grey"});
 
-			//now enable all language selectors except selected language
+			//now enable all language selectors except selected language.
 			jqueryMap.$languageSelectors.not('.' + selectedLanguage).click(languageClick);
 			jqueryMap.$languageSelectors.not('.' + selectedLanguage).css({ "cursor": "pointer", "color": "blue" });
 		}
