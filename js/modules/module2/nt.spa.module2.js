@@ -1,5 +1,5 @@
 /*
- * nt_spa.module2.js
+ * nt.spa.module2.js
  * Root namespace module
 */
 
@@ -9,9 +9,9 @@
   regexp : true,    sloppy : true,       vars : false,
   white  : true
 */
-/*global $, nt_spa.module2 */
+/*global $, nt.spa.module2 */
 
-nt_spa.module2 = (function () {
+nt.spa.module2 = (function () {
   var configModule = function(inputMap) {
     console.log(`module 2 configuration - inputMap ${JSON.stringify(inputMap)}`);
   };
