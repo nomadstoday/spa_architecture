@@ -1,5 +1,5 @@
 /*
- * nt_spa.js
+ * nt.spa.js
  * Root namespace module
 */
 
@@ -9,11 +9,11 @@
   regexp : true,    sloppy : true,       vars : false,
   white  : true
 */
-/*global $, nt_spa */
+/*global $, nt.spa */
 
-var nt_spa = (function () {
+nt.spa = (function () {
   var initApp = function ( $container ) {
-	nt_spa.shell.initShell($container);
+	nt.spa.shell.initShell($container);
   };
   
   return { initApp: initApp };
