@@ -1,4 +1,4 @@
-nt.spa.utils.settings = (function ($) {
+nt.spa.utils.settings = (function () {
 	var storage = nt.spa.utils.storage;
 	var currentLanguage = 'en'; //default
 	
@@ -61,4 +61,4 @@ nt.spa.utils.settings = (function ($) {
 	  applicationMode: applicationMode,
 	  getLanguageDescription: getLanguageDescription
 	};
-} (jQuery));
+} ());

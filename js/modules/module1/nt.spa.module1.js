@@ -16,9 +16,9 @@ nt.spa.module1 = (function () {
     console.log(`module 1 configuration - inputMap ${JSON.stringify(inputMap)}`);
   };
   
-  var initModule = function($moduleContainer) {
-		console.log('module 1 initialisation - module container: ' + $moduleContainer.attr('id'));
-		$moduleContainer.html('<h4><font color="blue">Module 1 contents go here!!!</h4>');
+  var initModule = function(moduleContainer) {
+		console.log(`module 1 initialisation - module container: ${moduleContainer.getAttribute('id')}`);
+		moduleContainer.innerHTML = '<h4><font color="blue">Module 1 contents go here!!!</h4>';
   };
   
   return { configModule: configModule, initModule: initModule };

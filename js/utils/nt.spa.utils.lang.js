@@ -1,4 +1,4 @@
-nt.spa.utils.lang = (function ($) {
+nt.spa.utils.lang = (function () {
 	var translationsDB = TAFFY([]);
 	var default_translationsDB = TAFFY({});
 	var defaultLanguage = 'en';
@@ -98,4 +98,4 @@ nt.spa.utils.lang = (function ($) {
 	  getText: getText,
 	  setTranslations: setTranslations
 	};
-} (jQuery));
+} ());

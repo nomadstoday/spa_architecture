@@ -1,4 +1,4 @@
-nt.spa.shell = (function ($) {
+nt.spa.shell = (function () {
     var initShell;
     var settings = nt.spa.utils.settings;
     var langUtils = nt.spa.utils.lang;
@@ -43,7 +43,7 @@ nt.spa.shell = (function ($) {
     },
 
         shellMap = {
-            $mainContainer: undefined,
+            mainContainer: undefined,
             anchor_map: {},
             resize_idto: undefined
         },
@@ -54,15 +54,15 @@ nt.spa.shell = (function ($) {
         setChatAnchor, initModule;
 
     setJqueryMap = function () {
-        var $mainContainer = shellMap.$mainContainer;
+        var mainContainer = shellMap.mainContainer;
 
         jqueryMap = {
-            $mainContainer: $mainContainer,
+            mainContainer: mainContainer,
             languageSelectors: document.querySelectorAll(`.${appPrefix}-shell-lang`),
-            $appTitle: $(`#${appPrefix}-appTitle`),
-            $moduleSelectors: $(`.${appPrefix}-shell-main-nav-module`),
-            $welcome: $(`#${appPrefix}-welcomeDescription`),
-            $moduleContainer: $(`#${appPrefix}-shell-moduleContainer`)
+            appTitle: document.getElementById(`${appPrefix}-appTitle`),
+            moduleSelectors: document.querySelectorAll(`.${appPrefix}-shell-main-nav-module`),
+            welcome: document.getElementById(`${appPrefix}-welcomeDescription`),
+            moduleContainer: document.getElementById(`${appPrefix}-shell-moduleContainer`)
         };
     };
 
@@ -88,8 +88,8 @@ nt.spa.shell = (function ($) {
 
         if (languageSet) {
             langUtils.setTranslations();
-            jqueryMap.$appTitle.text(langUtils.getText('appTitle'));
-            jqueryMap.$welcome.text(langUtils.getText('welcomeDescription'));
+            jqueryMap.appTitle.innerText = langUtils.getText('appTitle');
+            jqueryMap.welcome.innerText = langUtils.getText('welcomeDescription');
 
             jqueryMap.languageSelectors.forEach(function (selector) {                
                 toggleLanguageSelector(selector, selectedLanguage);
@@ -99,7 +99,7 @@ nt.spa.shell = (function ($) {
 
     var languageClick = function (e) {
         e.preventDefault();
-        languageChanged($(this).text());
+        languageChanged(this.innerText);
     };
 
     var configLanguage = function () {
@@ -108,23 +108,28 @@ nt.spa.shell = (function ($) {
     };
 
     var configModuleSelectors = function () {
-        jqueryMap.$moduleSelectors.click(moduleClick);
+        jqueryMap.moduleSelectors.forEach(function (selector) {
+            selector.addEventListener('click', moduleClick);
+        });
     };
 
     var moduleClick = function (e) {
         e.preventDefault();
-        jqueryMap.$moduleSelectors.removeClass('selected');
-        $(this).addClass('selected');
-        initModule($(this).attr('data-id'));
+        jqueryMap.moduleSelectors.forEach(function (selector) {
+            selector.classList.remove('selected');
+        });
+
+        this.classList.add('selected');
+        initModule(this.getAttribute('data-id'));
     };
 
     var initModule = function (moduleId) {
         function initModule1() {
-            nt.spa.module1.initModule(jqueryMap.$moduleContainer);
+            nt.spa.module1.initModule(jqueryMap.moduleContainer);
         }
 
         function initModule2() {
-            nt.spa.module2.initModule(jqueryMap.$moduleContainer);
+            nt.spa.module2.initModule(jqueryMap.moduleContainer);
         }
 
         var moduleLauncher = {};
@@ -142,7 +147,7 @@ nt.spa.shell = (function ($) {
     };
 
     initShell = function (mainContainer) {
-        shellMap.$mainContainer = mainContainer;
+        shellMap.mainContainer = mainContainer;
         mainContainer.innerHTML = configMap.main_html;
         setJqueryMap();
         configLanguage();
@@ -151,11 +156,11 @@ nt.spa.shell = (function ($) {
 
         //begin module initialisation ***************************************************************************
         nt.spa.module1.configModule({});
-        //nt.spa.module1.initModule(jqueryMap.$moduleContainer);
+        //nt.spa.module1.initModule(jqueryMap.moduleContainer);
         nt.spa.module2.configModule({});
-        //nt.spa.module2.initModule(jqueryMap.$moduleContainer);
+        //nt.spa.module2.initModule(jqueryMap.moduleContainer);
         //end module initialisation   ***************************************************************************
     };
 
     return { initShell: initShell };
-}(jQuery));
+}());

@@ -1,4 +1,4 @@
-nt.spa.utils.storage = (function ($) {
+nt.spa.utils.storage = (function () {
   var webStorageAvailable = function () {
 	return (typeof(Storage) !== "undefined");
   }
