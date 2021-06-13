@@ -29,7 +29,9 @@
         <!-- end app javascript   ************************************************************* -->
 
         <script>
-            $(function () { nt.spa.initApp($('#nt_spa')); });
+            document.addEventListener('DOMContentLoaded', (event) => {
+                nt.spa.initApp(document.getElementById('nt_spa'));
+            });
         </script>
     </head>
     <body>

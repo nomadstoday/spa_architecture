@@ -58,13 +58,30 @@ nt.spa.shell = (function ($) {
 
         jqueryMap = {
             $mainContainer: $mainContainer,
-            $languageSelectors: $(`.${appPrefix}-shell-lang`),
+            languageSelectors: document.querySelectorAll(`.${appPrefix}-shell-lang`),
             $appTitle: $(`#${appPrefix}-appTitle`),
             $moduleSelectors: $(`.${appPrefix}-shell-main-nav-module`),
             $welcome: $(`#${appPrefix}-welcomeDescription`),
             $moduleContainer: $(`#${appPrefix}-shell-moduleContainer`)
         };
     };
+
+    function toggleLanguageSelector(selector, selectedLanguage) {
+        var disable = selector.classList.contains(selectedLanguage);
+        var styles = {
+            "cursor": disable ? "default" : "pointer",
+            "color": disable ? "grey" : "blue"
+        };
+
+        Object.assign(selector.style, styles);
+
+        if (disable) {
+            selector.removeEventListener('click', languageClick);
+        }
+        else {
+            selector.addEventListener('click', languageClick);
+        }
+    }
 
     var languageChanged = function (selectedLanguage) {
         var languageSet = settings.setCurrentLanguage(selectedLanguage);
@@ -74,13 +91,9 @@ nt.spa.shell = (function ($) {
             jqueryMap.$appTitle.text(langUtils.getText('appTitle'));
             jqueryMap.$welcome.text(langUtils.getText('welcomeDescription'));
 
-            //disable all language selectors
-            jqueryMap.$languageSelectors.off("click");
-            jqueryMap.$languageSelectors.css({ "cursor": "default", "color": "grey" });
-
-            //now enable all language selectors except selected language.
-            jqueryMap.$languageSelectors.not('.' + selectedLanguage).click(languageClick);
-            jqueryMap.$languageSelectors.not('.' + selectedLanguage).css({ "cursor": "pointer", "color": "blue" });
+            jqueryMap.languageSelectors.forEach(function (selector) {                
+                toggleLanguageSelector(selector, selectedLanguage);
+            });
         }
     };
 
@@ -123,14 +136,14 @@ nt.spa.shell = (function ($) {
     }
 
     var setDefaults = function () {
-        jqueryMap.$languageSelectors.each(function () {
-            $(this).attr('title', settings.getLanguageDescription($(this).text()));
+        jqueryMap.languageSelectors.forEach(function (selector) {
+            selector.setAttribute('title', settings.getLanguageDescription(selector.innerText));
         });
     };
 
-    initShell = function ($mainContainer) {
-        shellMap.$mainContainer = $mainContainer;
-        $mainContainer.html(configMap.main_html);
+    initShell = function (mainContainer) {
+        shellMap.$mainContainer = mainContainer;
+        mainContainer.innerHTML = configMap.main_html;
         setJqueryMap();
         configLanguage();
         configModuleSelectors();

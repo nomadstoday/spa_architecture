@@ -12,8 +12,8 @@
 /*global $, nt.spa */
 
 nt.spa = (function () {
-  var initApp = function ( $container ) {
-	nt.spa.shell.initShell($container);
+  var initApp = function ( container ) {
+	nt.spa.shell.initShell(container);
   };
   
   return { initApp: initApp };
