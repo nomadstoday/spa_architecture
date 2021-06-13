@@ -1,47 +1,38 @@
 ﻿<!doctype html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>nomadsToday (nt) SPA Architecture</title>
+    <head>
+        <meta charset="UTF-8">
+        <title>nomadsToday (nt) SPA Architecture</title>
 
-  <!-- stylesheets ---------------------------------------------------->
-  <link rel="stylesheet" href="css/nt_spa.css" type="text/css"/>
-  
-  <!-- Begin Nmbrs demo ui css --------------------->
-  <!-- <link rel="stylesheet" href="css/nt_spa_ui_demo.css" type="text/css"/>
-  <link rel="stylesheet" href="css/nt_spa_ui_demo-icons.css" type="text/css"/>
-  <link rel="stylesheet" href="css/nt_spa_ui_demo-fonts.css" type="text/css"/> -->
-  <!-- End Nmbrs demo ui css   --------------------->
-  
-  <link rel="stylesheet" href="css/nt_spa.shell.css" type="text/css"/>
+        <!-- begin stylesheets ---------------------------------------------------->
+        <link rel="stylesheet" href="css/nt_spa.css" type="text/css" />
+        <link rel="stylesheet" href="css/nt_spa.shell.css" type="text/css" />
+        <!-- end stylesheets   ---------------------------------------------------->
+        <!-- third-party javascript -->
+        <script src="js/lib/jq/jquery-1.9.1.js"></script>
+        <script src="js/lib/jq/jquery.uriAnchor-1.1.3.js"></script>
+        <script src="js/lib/taffy-min.js"></script>
 
-  <!-- third-party javascript -->
-  <script src="js/lib/jq/jquery-1.9.1.js"></script>
-  <script src="js/lib/jq/jquery.uriAnchor-1.1.3.js"></script>
-  <script src="js/lib/taffy-min.js"></script>
+        <!-- begin app javascript ************************************************************* -->
+        <script src="js/nt.js"></script>
+        <script src="js/nt.spa.js"></script>
+        <script src="js/utils/nt.spa.utils.js"></script>
+        <script src="js/utils/nt.spa.utils.storage.js"></script>
+        <script src="js/utils/nt.spa.utils.settings.js"></script>
+        <script src="js/utils/nt.spa.utils.lang.js"></script>
+        <script src="js/nt.spa.shell.js"></script>
 
-  <!-- begin app javascript ************************************************************* -->
-  <script src="js/nt.js"></script>
-  <script src="js/nt.spa.js"></script>
-  <script src="js/utils/nt.spa.utils.js"></script>
-  <script src="js/utils/nt.spa.utils.storage.js"></script>
-  <script src="js/utils/nt.spa.utils.settings.js"></script>
-  <script src="js/utils/nt.spa.utils.lang.js"></script>
-  <script src="js/nt.spa.shell.js"></script>
-  
-  <!-- begin modules -->
-  <script src="js/modules/module1/nt.spa.module1.js"></script>
-  <script src="js/modules/module2/nt.spa.module2.js"></script>
-  <!-- end modules -->
-  
-  <!-- end app javascript   ************************************************************* -->
-  
-  <script>
-    $(function () { nt.spa.initApp( $('#nt_spa') ); });
-  </script>
+        <!-- begin modules -->
+        <script src="js/modules/module1/nt.spa.module1.js"></script>
+        <script src="js/modules/module2/nt.spa.module2.js"></script>
+        <!-- end modules -->
+        <!-- end app javascript   ************************************************************* -->
 
-</head>
-<body>
-<div id="nt_spa"></div>
-</body>
+        <script>
+            $(function () { nt.spa.initApp($('#nt_spa')); });
+        </script>
+    </head>
+    <body>
+        <div id="nt_spa"></div>
+    </body>
 </html>
